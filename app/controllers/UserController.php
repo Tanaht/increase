@@ -8,11 +8,11 @@ class UserController extends \Phalcon\Mvc\Controller
 
     }
 
-    public function projectsAction($arg1)
+    public function projectsAction($id)
     {
-        echo $arg1;
-        $this->jquery->click("#btn", "console.log('jquery marche');");
-        $this->jquery->compile($this->view);
+        $query =  array("(id = $id)");
+        $user = User::find($query);
+        $this->view->setVar("user", $user);
     }
 
 }

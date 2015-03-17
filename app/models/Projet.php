@@ -2,7 +2,9 @@
 
 class Projet extends \Phalcon\Mvc\Model
 {
-
+    public function initialize(){
+        $this->belongsTo("idClient", "User", "id");
+    }
     /**
      *
      * @var integer
