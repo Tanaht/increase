@@ -12,7 +12,12 @@ class UserController extends \Phalcon\Mvc\Controller
     {
         $query =  array("(id = $id)");
         $user = User::find($query);
+
+        $query =  array("(idClient = $id)");
+        $projet = Projet::find($query);
+
         $this->view->setVar("user", $user);
+        $this->view->setVar("projet", $projet);
     }
 
 }

@@ -1,4 +1,7 @@
 <?php
 echo "<h1>Mes Projets ".$user[0]->identite." </h1>";
 echo $this->getContent();
+for($i=0 ; $i < count($projet) ; $i++){
+    echo $projet[$i]->nom . "<br>";
+}
 ?>

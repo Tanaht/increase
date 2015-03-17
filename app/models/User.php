@@ -2,9 +2,6 @@
 
 class User extends \Phalcon\Mvc\Model
 {
-    public function initialize(){
-        $this->hasMany("id", "Projets", "idClient");
-    }
     /**
      *
      * @var integer
