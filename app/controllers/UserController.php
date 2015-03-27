@@ -10,14 +10,9 @@ class UserController extends \Phalcon\Mvc\Controller
 
     public function projectsAction($id)
     {
-        $query =  array("(id = $id)");
-        $user = User::find($query);
-
-        $query =  array("(idClient = $id)");
-        $projet = Projet::find($query);
+        $user = User::findFirst("id = $id");
 
         $this->view->setVar("user", $user);
-        $this->view->setVar("projet", $projet);
     }
 
 }

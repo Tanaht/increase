@@ -2,9 +2,6 @@
 
 class Projet extends \Phalcon\Mvc\Model
 {
-    public function initialize(){
-        $this->belongsTo("idClient", "User", "id");
-    }
     /**
      *
      * @var integer
@@ -40,6 +37,12 @@ class Projet extends \Phalcon\Mvc\Model
      * @var integer
      */
     public $idClient;
+
+    public function initialize(){
+        $this->belongsTo("idClient", "User", "id");
+        $this->belongsTo('id', 'Message', 'idProjet');
+        $this->belongsTo('id', 'Projet', 'idProjet');
+    }
 
     /**
      * Independent Column Mapping.
