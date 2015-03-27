@@ -1,3 +1,56 @@
 <?php
-echo $this->getContent();
+if(!$user){
+    return;//redirection vers une page 404
+}
 ?>
+<div class="row">
+    <!-- Affichage du nom de l'utilisateur -->
+        <h3><span class="glyphicon glyphicon-user"></span><?php echo " " . $user->identite;?> /Mes Projets:</h3>
+        <?php
+        /*
+         * On boucle pour afficher la liste des projets de l'utilisateur
+         */
+            for($i=0 ; $i < count($user->projet) ; $i++ ) {
+                ?>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <!-- Affichage du nom du projet -->
+                        <?php echo $user->projet[$i]->nom ?>
+                    </div>
+                    <div class="col-sm-6">
+                        <?php
+                        /*
+                         * On boucle pour récupéré le pourcentage d'avancement total
+                         * à partir des cas d'utilisations
+                         */
+                            $avancement = 0;
+                            for($j=0 ; $j<count($user->projet[$i]->usecase) ; $j++) {
+                                $avancement = $avancement + $user->projet[$i]->usecase[$j]->getAvancement();
+                            }
+                        /*
+                         * On vérifie ou en est le projet et on selon son retard les couleurs changent
+                         */
+                            $notificationAvancement = "success";
+                            if($user->projet[$i]->getJourRestant() < 0){
+                                $notificationAvancement = "danger";
+                            }elseif($avancement < $user->projet[$i]->getPourcentageTempEcoule()){
+                                $notificationAvancement = "warning";
+                            }
+                        ?>
+                        <!-- Affichage de la progressBar -->
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-<?php echo $notificationAvancement; ?> progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $avancement; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $avancement; ?>%">
+                                <?php echo round($avancement) . " %"; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <!-- Affichage du nombre de jours restants -->
+                        <?php echo $user->projet[$i]->getJourRestant() . " Jours restant" ?>
+                    </div>
+                </div>
+            <?php
+            }
+
+        ?>
+</div>

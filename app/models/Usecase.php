@@ -39,6 +39,17 @@ class Usecase extends \Phalcon\Mvc\Model
      */
     public $idDev;
 
+    public  function getAvancement(){
+        return ( ( $this->poids/$this->getTotalPoids() ) * 100 ) * ($this->avancement / 100);
+    }
+
+    public function getTotalPoids(){
+        return Usecase::sum(array(
+                "column" => "poids",
+                "conditions" => "idProjet = " . $this->idProjet)
+        );
+    }
+
     public function initialize(){
         $this->belongsTo('idDev', 'User', 'id');
         $this->hasMany('code', 'Tache', 'codeUseCase');
