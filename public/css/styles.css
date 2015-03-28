@@ -71,3 +71,14 @@ body{
     padding-left :140px;
 }
 
+div.title{
+    background-color: #FFE29D;
+    border-color: #FFE29D;
+    color: #000000;
+    font-size: 15px;
+}
+
+div.text-content{
+    background-color: #FFE29D;
+    border-color: #FFE29D;
+}
