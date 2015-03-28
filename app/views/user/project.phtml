@@ -3,10 +3,9 @@
         <!-- IMAGE HERE -->
     </div>
     <div class="col-sm-9">
-        <div class="alert alert-success title message">
+        <div class="alert alert-success title">
             <?php echo $projet->nom . " [" . $projet->user->identite . "]";?>
         </div>
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Détails du projet</h3>
@@ -48,4 +47,10 @@
 
     </div>
 </div>
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-9">
+        <button class="btn btn-default" data-user="<?php echo $projet->idClient; ?>" id="btnReturn">Fermer le Projet</button>
+    </div>
+</div>
+
 <?=$script_foot?>
