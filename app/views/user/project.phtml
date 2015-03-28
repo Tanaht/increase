@@ -14,7 +14,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <p class="form-control"><?php echo $projet->description ?></p>
+                        <p class="well"><?php echo $projet->description ?></p>
                     </div>
                 </div>
                 <div class="row">
@@ -35,6 +35,16 @@
             <div class="panel-body" id="equipe-content">
             </div>
         </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-3">
+        <button style="width: 100%;" class="btn btn-default" id="btnMessages"><?php echo count($projet->message); ?> Messages...</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-9 col-sm-offset-3" id="divMessages">
 
     </div>
 </div>

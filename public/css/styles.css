@@ -82,3 +82,13 @@ div.text-content{
     background-color: #FFE29D;
     border-color: #FFE29D;
 }
+
+p.well{
+    border: 1px solid #dfd7ca;
+    border-radius: 4px;
+    background-color: white;
+}
+
+button#btnMessages{
+    margin-bottom: 20px;
+}

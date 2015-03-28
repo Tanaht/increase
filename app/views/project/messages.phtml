@@ -1,0 +1,19 @@
+<div class="panel panel-default" id="messages-content">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php count($messages) ?> Messages</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <tr><th>Emetteur</th><th>Objet</th><th>Date</th></tr>
+            <?php
+            foreach($messages as $message){
+                echo "<tr>";
+                    echo "<td>" . $message->user->identite . "</td>";
+                    echo "<td>" . $message->objet . "</td>";
+                    echo "<td>" . date("d-M-Y", strtotime($message->date)) . "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </div>
+</div>

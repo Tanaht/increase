@@ -39,12 +39,13 @@ class Projet extends \Phalcon\Mvc\Model
     public $idClient;
 
     public function getEquipe(){
+        $poidsTotal = Usecase::sum(array("column" => "poids", "conditions" => "idProjet = " . $this->id));
         $aggregate = Usecase::sum(array("group" => "idDev", "column" => "poids", "conditions" => "idProjet = " . $this->id));
         $equipe = null;
         foreach ($aggregate as $row) {
             $membre = User::findFirst("id = " . $row->idDev);
             $nom = $membre->identite;
-            $poids = $row->sumatory;
+            $poids = round($row->sumatory / $poidsTotal * 100);
             $equipe[] = array("nom" => $nom, "poids" => $poids);
         }
         return $equipe;
@@ -60,7 +61,7 @@ class Projet extends \Phalcon\Mvc\Model
     }
     public function initialize(){
         $this->belongsTo("idClient", "User", "id");
-        $this->belongsTo('id', 'Message', 'idProjet');
+        $this->hasMany('id', 'Message', 'idProjet');
         $this->hasMany('id', 'Usecase', 'idProjet');
     }
 
