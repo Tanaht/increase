@@ -7,7 +7,7 @@
             <tr><th>Emetteur</th><th>Objet</th><th>Date</th></tr>
             <?php
             foreach($messages as $message){
-                echo "<tr>";
+                echo "<tr class='message' data-objet='" . $message->objet . "' data-content='" . $message->content . "'>";
                     echo "<td>" . $message->user->identite . "</td>";
                     echo "<td>" . $message->objet . "</td>";
                     echo "<td>" . date("d-M-Y", strtotime($message->date)) . "</td>";
@@ -15,5 +15,11 @@
             }
             ?>
         </table>
-    </div>
+        <div class="panel panel-default hide" id="message">
+            <div class="panel-heading">
+                <h3 class="panel-title" id="message-objet"></h3>
+            </div>
+            <div class="panel-body" id="message-content">
+            </div>
+        </div>
 </div>

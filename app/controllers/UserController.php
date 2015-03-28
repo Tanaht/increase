@@ -30,8 +30,23 @@ class UserController extends \Phalcon\Mvc\Controller
 
         $this->jquery->click("#btnMessages",
             "
-            console.log('toto');
-            $('#divMessages').load('../../project/messages/" . $idProjet . " #messages-content');
+                $('#divMessages').load(
+                    '../../project/messages/" . $idProjet . " #messages-content',
+                    function(responseText, textStatus, XMLHttpRequest){
+                        $('.message').click(function(event){
+                            var self = this;
+                            $('#message').addClass('hide');
+                            $('#message-objet').html(
+                                $(self).data('objet')
+                            );
+
+                            $('#message-content').html(
+                                $(self).data('content')
+                            );
+                            $('#message').removeClass('hide');
+                        });
+                    }
+                );
             "
         );
 
@@ -39,4 +54,3 @@ class UserController extends \Phalcon\Mvc\Controller
     }
 
 }
-
