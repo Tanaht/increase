@@ -1,0 +1,15 @@
+<td colspan="4">
+    <table class="table">
+        <?php
+        foreach($usecase as $case){
+            foreach($case->tache as $tache) {
+                echo "<tr class='unselect $tache->codeUseCase'>";
+                echo "<td>$tache->libelle</td>";
+                echo "<td>$tache->avancement</td>";
+                echo "<td>" . date('d-M-Y', strtotime($tache->date)) . "</td>";
+                echo "</tr>";
+            }
+        }
+        ?>
+    </table>
+</td>

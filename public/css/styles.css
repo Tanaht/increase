@@ -92,3 +92,7 @@ p.well{
 button#btnMessages{
     margin-bottom: 20px;
 }
+
+tr.unselect{
+    background-color: #4cae4c;
+}

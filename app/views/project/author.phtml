@@ -16,7 +16,7 @@
     <?php
         foreach($usecase as $case){
             ?>
-                <tr>
+                <tr class="usecase" data-show="<?php echo $case->code; ?>">
                     <td>
                         <?php echo $case->nom; ?>
                     </td>
@@ -32,6 +32,12 @@
                     </td>
                     <td>
                         <?php echo count($case->tache); ?> tâches
+                    </td>
+                </tr>
+                <tr class="usecase-hide hide" id="usecase_show_<?php echo $case->code; ?>">
+                    <td colspan="4">
+                        <table class="table" id="usecase_<?php echo $case->code; ?>"">
+                        </table>
                     </td>
                 </tr>
             <?php
