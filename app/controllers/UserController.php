@@ -28,6 +28,11 @@ class UserController extends \Phalcon\Mvc\Controller
             "$('#equipe-content').load('../../project/equipe/" . $idProjet . " #equipe-content');"
         );
 
+        $this->jquery->click('#btnReturn',
+            "
+            $('body').load('../../user/projects/' + $(this).data('user') );
+            "
+        );
         $this->jquery->click("#btnMessages",
             "
                 $('#divMessages').load(

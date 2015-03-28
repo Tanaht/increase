@@ -5,7 +5,12 @@ if(!$user){
 ?>
 <div class="row">
     <!-- Affichage du nom de l'utilisateur -->
-        <h3><span class="glyphicon glyphicon-user"></span><?php echo " " . $user->identite;?> /Mes Projets:</h3>
+    <div class="col-sm-12">
+        <div class="alert alert-success title">
+        <span class="glyphicon glyphicon-user"></span><?php echo " " . $user->identite;?> /Mes Projets:
+        </div>
+    </div>
+</div>
         <?php
         /*
          * On boucle pour afficher la liste des projets de l'utilisateur
