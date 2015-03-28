@@ -38,6 +38,17 @@ class Projet extends \Phalcon\Mvc\Model
      */
     public $idClient;
 
+    public function getEquipe(){
+        $aggregate = Usecase::sum(array("group" => "idDev", "column" => "poids", "conditions" => "idProjet = " . $this->id));
+        $equipe = null;
+        foreach ($aggregate as $row) {
+            $membre = User::findFirst("id = " . $row->idDev);
+            $nom = $membre->identite;
+            $poids = $row->sumatory;
+            $equipe[] = array("nom" => $nom, "poids" => $poids);
+        }
+        return $equipe;
+    }
     public function getjourRestant(){
         return date("d", strtotime($this->dateFinPrevue) - time());
     }

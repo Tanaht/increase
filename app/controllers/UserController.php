@@ -23,6 +23,11 @@ class UserController extends \Phalcon\Mvc\Controller
     public function projectAction($idProjet){
         $projet = Projet::findFirst("id = $idProjet");
         $this->view->setVar("projet", $projet);
+
+        $this->jquery->ready(
+            "$('#equipe-content').load('../../project/equipe/" . $idProjet . " #equipe-content');"
+        );
+        $this->jquery->compile($this->view);
     }
 
 }
