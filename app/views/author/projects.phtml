@@ -1,5 +1,5 @@
 <?php
-if(!$user){
+if(!$user  || !$user->getAuthorProject()){
     return;//TODO: redirection vers une page 404
 }
 ?>
@@ -15,12 +15,12 @@ if(!$user){
         /*
          * On boucle pour afficher la liste des projets de l'utilisateur
          */
-            for($i=0 ; $i < count($user->projet) ; $i++ ) {
+            foreach($user->getAuthorProject() as $projet) {
                 ?>
                 <div class="row projet">
                     <div class="col-sm-2">
                         <!-- Affichage du nom du projet -->
-                        <?php echo $user->projet[$i]->nom ?>
+                        <?php echo $projet->nom ?>
                     </div>
                     <div class="col-sm-6">
                         <?php
@@ -29,16 +29,16 @@ if(!$user){
                          * à partir des cas d'utilisations
                          */
                             $avancement = 0;
-                            for($j=0 ; $j<count($user->projet[$i]->usecase) ; $j++) {
-                                $avancement = $avancement + $user->projet[$i]->usecase[$j]->getAvancement();
+                            for($j=0 ; $j<count($projet->usecase) ; $j++) {
+                                $avancement = $avancement + $projet->usecase[$j]->getAvancement();
                             }
                         /*
                          * On vérifie ou en est le projet et on selon son retard les couleurs changent
                          */
                             $notificationAvancement = "success";
-                            if($user->projet[$i]->getJourRestant() < 0){
+                            if($projet->getJourRestant() < 0){
                                 $notificationAvancement = "danger";
-                            }elseif($avancement < $user->projet[$i]->getPourcentageTempEcoule()){
+                            }elseif($avancement < $projet->getPourcentageTempEcoule()){
                                 $notificationAvancement = "warning";
                             }
                         ?>
@@ -51,10 +51,10 @@ if(!$user){
                     </div>
                     <div class="col-sm-2">
                         <!-- Affichage du nombre de jours restants -->
-                        <?php echo $user->projet[$i]->getJourRestant() . " Jours restant" ?>
+                        <?php echo $projet->getJourRestant() . " Jours restant" ?>
                     </div>
                     <div class="col-sm-2">
-                        <button data-href="<?php echo $user->projet[$i]->id;?>" class="btn btn-default">Ouvrir...</button>
+                        <button data-href="<?php echo $projet->id;?>" class="btn btn-default">Ouvrir...</button>
                     </div>
                 </div>
             <?php

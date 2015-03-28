@@ -43,6 +43,18 @@ class Usecase extends \Phalcon\Mvc\Model
         return ( ( $this->poids/$this->getTotalPoids() ) * 100 ) * ($this->avancement / 100);
     }
 
+    public  function getAvancementByAuthor($idDev){
+        return ( ( $this->poids/$this->getTotalPoidsByAuthor($idDev) ) * 100 ) * ($this->avancement / 100);
+    }
+
+    public function getTotalPoidsByAuthor($idDev){
+        return Usecase::sum(array(
+                "column" => "poids",
+                "conditions" => "idProjet = " . $this->idProjet . " and idDev =" . $idDev
+            )
+        );
+    }
+
     public function getTotalPoids(){
         return Usecase::sum(array(
                 "column" => "poids",

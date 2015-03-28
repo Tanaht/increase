@@ -22,5 +22,10 @@ class ProjectController extends \Phalcon\Mvc\Controller
         $messages = Message::find("idProjet = $idProjet");
         $this->view->setVar("messages", $messages);
     }
+
+    public function authorAction($idProjet, $idAuthor){
+        $usecase = Usecase::find("idDev = $idAuthor and idProjet = $idProjet");
+        $this->view->setVar("usecase", $usecase);
+    }
 }
 

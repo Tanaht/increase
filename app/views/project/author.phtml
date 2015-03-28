@@ -1,0 +1,40 @@
+<table class="table" id="usecase-content">
+<tr>
+    <th>
+        Cas d'utilisation
+    </th>
+    <th>
+        Poids
+    </th>
+    <th>
+        Progression
+    </th>
+    <th>
+        Tâches
+    </th>
+</tr>
+    <?php
+        foreach($usecase as $case){
+            ?>
+                <tr>
+                    <td>
+                        <?php echo $case->nom; ?>
+                    </td>
+                    <td>
+                        <?php echo $case->poids; ?>
+                    </td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $case->getAvancementByAuthor($case->idDev); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $case->getAvancementByAuthor($case->idDev); ?>%">
+                                <?php echo round($case->getAvancementByAuthor($case->idDev)) . " %"; ?>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <?php echo count($case->tache); ?> tâches
+                    </td>
+                </tr>
+            <?php
+        }
+    ?>
+</table>
