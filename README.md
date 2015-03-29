@@ -3,7 +3,7 @@
 A Phalcon web application to manage the progress of projects, and improve communication with the customer
 #Equipe
 Charpentier Antoine
-#Fonctionnalitées:
+#Fonctionnalités:
 - [x] IHM -> Affichage projets d'un Client
 - [x] Ouverture d'un projet client
 - [x] Affichage des mails sur le projet courants
